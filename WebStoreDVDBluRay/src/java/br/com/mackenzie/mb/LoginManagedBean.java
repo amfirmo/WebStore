@@ -26,7 +26,7 @@ public class LoginManagedBean {
     
     private String userName;
     private String pass;
-    private String validated="";
+    private boolean validated=false;
     /**
      * Creates a new instance of LoginManagedBean
      */
@@ -35,7 +35,7 @@ public class LoginManagedBean {
     
     public void validateUser(){
         //@TODO validar o usuario
-        this.validated = "OK";
+        this.validated = true;
     
     }
     

@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class SystemUserFacade extends AbstractFacade<SystemUser> {
-    @PersistenceContext(unitName = "AppEJBPU")
+    @PersistenceContext(unitName = "WebStoreDVDBluRayPU")
     private EntityManager em;
 
     @Override

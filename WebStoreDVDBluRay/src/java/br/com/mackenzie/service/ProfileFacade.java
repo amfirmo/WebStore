@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ProfileFacade extends AbstractFacade<Profile> {
-    @PersistenceContext(unitName = "AppEJBPU")
+    @PersistenceContext(unitName = "WebStoreDVDBluRayPU")
     private EntityManager em;
 
     @Override

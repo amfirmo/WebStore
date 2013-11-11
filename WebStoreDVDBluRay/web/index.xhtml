@@ -18,8 +18,8 @@
             <h:outputText value="Senha"/>
             <h:inputSecret value=""/>
             <h:commandButton  value="Entrar" action="#{loginManagedBean.validateUser()}"></h:commandButton>
-            <h:outputText rendered="#{loginManagedBean.validated.equals("OK")}" value="Bem-vindo"/>
-            <h:outputText rendered="#{loginManagedBean.validated.equals("OK")}" value="#{loginManagedBean.userName}"/>
+            <h:outputText rendered="#{loginManagedBean.validated}" value="Bem-vindo"/>
+            <h:outputText rendered="#{loginManagedBean.validated}" value="#{loginManagedBean.userName}"/>
         </h:form>
         
         <h:form>
