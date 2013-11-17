@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <body>
+        
+        <ui:composition template="./paginaBase.xhtml">
+            
+            <ui:define name="content">
+                <h:form>
+                    <div class='panel panel-primary'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <ol class="breadcrumb">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Cadastro Cliente</li>
+                                </ol>
+                            </h3>
+                        </div>
+                        <h:panelGrid columns="1">
+                            <div class="form-group">
+                                <h:inputText size="50" class="form-control" pt:placeholder="Nome Completo"/>
+                            </div> 
+                        </h:panelGrid>     
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Endereço de Cobrança</h3>
+                            </div>
+                            <div class="panel-body">
+                                <h:panelGrid columns="7">
+                                    <h:inputText size="38" class="form-control" pt:placeholder="Nome da Rua/Avenida"/>
+                                    <h:inputText size="6" class="form-control" pt:placeholder="Número"/>
+                                    <h:outputText value="Estado"/>
+                                    <h:selectOneMenu class="form-control" />
+                                    <h:outputText value="Cidade"/>
+                                    <h:selectOneMenu class="form-control" />
+                                    <h:inputText size="8" class="form-control" pt:placeholder="CEP"/>
+                                </h:panelGrid>     
+                            </div>
+                        </div>  
+                    </div>
+                    <h:commandButton class="btn-default" value="Enviar"/>
+                </h:form>
+            </ui:define>
+            
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+            
+        </ui:composition>
+        
+    </body>
+</html>

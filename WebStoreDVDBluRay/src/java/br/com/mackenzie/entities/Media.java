@@ -6,6 +6,7 @@ package br.com.mackenzie.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import lombok.Getter;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Movie extends Product implements Serializable{
+public class Media extends Product implements Serializable{
     
     private String title;
     private int releaseYear;

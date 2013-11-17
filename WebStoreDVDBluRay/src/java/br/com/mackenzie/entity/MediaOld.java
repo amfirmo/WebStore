@@ -22,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TB_MEDIA")
-public class Media implements Serializable{
+public class MediaOld implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,14 +36,14 @@ public class Media implements Serializable{
     
     private String languages;
 
-    public Media(String titulo, String sinopse, int ano, String languages) {
+    public MediaOld(String titulo, String sinopse, int ano, String languages) {
         this.titulo = titulo;
         this.sinopse = sinopse;
         this.ano = ano;
         this.languages = languages;
     }
 
-    public Media() {
+    public MediaOld() {
     }
     
     public String getTitulo() {

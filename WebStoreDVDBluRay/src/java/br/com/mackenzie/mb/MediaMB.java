@@ -4,7 +4,7 @@
  */
 package br.com.mackenzie.mb;
 
-import br.com.mackenzie.entity.Media;
+import br.com.mackenzie.entity.MediaOld;
 import br.com.mackenzie.service.MediaService;
 import java.util.List;
 import javax.ejb.EJB;
@@ -18,13 +18,13 @@ public class MediaMB {
     @EJB
     private MediaService mediaService;
     
-    private List<Media> lista;
+    private List<MediaOld> lista;
 
     public void setMediaService(MediaService mediaService) {
         this.mediaService = mediaService;
     }
 
-    public void setLista(List<Media> lista) {
+    public void setLista(List<MediaOld> lista) {
         this.lista = lista;
     }
 
@@ -32,14 +32,14 @@ public class MediaMB {
         return mediaService;
     }
 
-    public List<Media> getLista() {
+    public List<MediaOld> getLista() {
         return lista;
     }
     
     public MediaMB(){}
     
     public void criaObjetoNoBanco(){
-        Media media = new Media("titulo", "sinopse", 2006, "portuguese");
+        MediaOld media = new MediaOld("titulo", "sinopse", 2006, "portuguese");
         mediaService.createMedia(media);
 
     }

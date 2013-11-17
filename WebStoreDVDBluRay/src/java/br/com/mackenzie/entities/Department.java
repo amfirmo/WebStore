@@ -7,6 +7,8 @@ package br.com.mackenzie.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -14,10 +16,12 @@ import javax.persistence.Id;
  */
 @Entity
 public class Department implements Serializable {
-    
+    @Getter
+    @Setter
     @Id
     private int id;
-    
+    @Getter
+    @Setter
     private String name;
     
 }

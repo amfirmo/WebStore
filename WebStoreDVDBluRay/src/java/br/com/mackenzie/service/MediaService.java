@@ -4,7 +4,7 @@
  */
 package br.com.mackenzie.service;
 
-import br.com.mackenzie.entity.Media;
+import br.com.mackenzie.entity.MediaOld;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,16 +23,16 @@ public class MediaService {
     @PersistenceContext
     private EntityManager em;
     
-    public void createMedia(Media media){
+    public void createMedia(MediaOld media){
     
         em.persist(media);
     
     }
     
-    public List<Media> findAll(){
+    public List<MediaOld> findAll(){
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         
-        cq.select(cq.from(Media.class));
+        cq.select(cq.from(MediaOld.class));
         
         return em.createQuery(cq).getResultList();
     }
