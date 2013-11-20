@@ -6,13 +6,19 @@ package br.com.mackenzie.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.Generated;
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,10 +29,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-public class Product implements Serializable{
+@Inheritance(strategy= InheritanceType.JOINED)
+@DiscriminatorColumn(name = "PRODUCT_TYPE",
+                     discriminatorType = DiscriminatorType.INTEGER,
+                     length = 2)
+@TableGenerator(name = "TAB_GEN_PRD", 
+                table="TB_SEQ",
+                pkColumnName = "SEQ_NAME", 
+                pkColumnValue = "PRD", 
+                valueColumnName = "SEQ_VAL")
+public abstract class Product implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "TAB_GEN_PRD")
     private int id;
     
     private String name;

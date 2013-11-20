@@ -25,15 +25,15 @@ import lombok.Setter;
 @Getter
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@TableGenerator(name="gerador", 
-                table="TABLE_SEQ", 
-                pkColumnName="SEQUENCE_NAME",
-                pkColumnValue="SEQUENCE_USER", 
-                valueColumnName="SEQUENCE_VALUE")
+@TableGenerator(name = "TAB_GEN_USR", 
+                table="TB_SEQ",
+                pkColumnName = "SEQ_NAME", 
+                pkColumnValue = "USR", 
+                valueColumnName = "SEQ_VAL")
 public class SystemUser implements Serializable {
     
     @Id
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="gerador")
+    @GeneratedValue(strategy= GenerationType.TABLE, generator="TAB_GEN_USR")
     private int id;
     
     private String name;

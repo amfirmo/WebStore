@@ -7,7 +7,9 @@
 package br.com.mackenzie.util;
 
 import br.com.mackenzie.entities.Department;
+import br.com.mackenzie.entities.Profile;
 import br.com.mackenzie.service.DepartmentFacade;
+import br.com.mackenzie.service.ProfileFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -23,7 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 public class NewServlet extends HttpServlet {
 
     @EJB
-    DepartmentFacade dpf;
+    DepartmentFacade departmentService;
+    @EJB
+    ProfileFacade profileService;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -98,10 +102,21 @@ public class NewServlet extends HttpServlet {
         dp.setId(1);
         dp.setName("DVD Blu-Ray");
         
+        //cadastro de profile
+        Profile p = new Profile();
+        p.setId(1);
+        p.setName("Cliente");
+        Profile p1 = new Profile();
+        p1.setId(2);
+        p1.setName("Administrador");
+        
+        
         try{
-            dpf.create(dp);
+            departmentService.create(dp);
+            profileService.create(p);
+            profileService.create(p1);
         }catch(Exception e){
-            System.out.println("Falha no cadastro básico: "+e);
+            System.err.println("Falha no cadastro básico: "+e);
         }
     }
 

@@ -6,7 +6,10 @@ package br.com.mackenzie.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +18,16 @@ import lombok.Setter;
  * @author 71321934
  */
 @Entity
+@TableGenerator(name = "TAB_GEN_DEP", 
+                table="TB_SEQ",
+                pkColumnName = "SEQ_NAME", 
+                pkColumnValue = "DEP", 
+                valueColumnName = "SEQ_VAL")
 public class Department implements Serializable {
     @Getter
     @Setter
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "TAB_GEN_DEP")
     private int id;
     @Getter
     @Setter
