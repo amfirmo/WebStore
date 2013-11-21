@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
@@ -31,27 +32,22 @@ import lombok.Setter;
 @Entity
 @Inheritance(strategy= InheritanceType.JOINED)
 @DiscriminatorColumn(name = "PRODUCT_TYPE",
-                     discriminatorType = DiscriminatorType.INTEGER,
+                     discriminatorType = DiscriminatorType.STRING,
                      length = 2)
 @TableGenerator(name = "TAB_GEN_PRD", 
                 table="TB_SEQ",
                 pkColumnName = "SEQ_NAME", 
                 pkColumnValue = "PRD", 
                 valueColumnName = "SEQ_VAL")
-public abstract class Product implements Serializable{
+public class Product implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "TAB_GEN_PRD")
     private int id;
-    
     private String name;
-    
     private float price;
-    
     @OneToMany
     private List<Comment> comments;
-    
-    @OneToOne
+    @ManyToOne
     private Department department;
-    
 }

@@ -4,14 +4,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+          
     <body>
         <ui:composition template="./paginaBase.xhtml">
             <div id="content" style="height:600px">
                 <ui:define name="content">
-                    
-                    <h:form>
+                    <h:form enctype="multipart/form-data">
                         <div class='panel panel-primary'>
                             <div class="panel-heading">
                                 <h3 class="panel-title">
@@ -27,36 +26,34 @@
                                 </div>
                                 <div class="panel-body">
                                     <h:panelGrid columns="1">
-                                        <h:inputText size="20" class="form-control" pt:placeholder="Título" value="#{cadastroDVDBluRayManagedBean.media.title}"/>
+                                        <h:inputText size="20" class="form-control" pt:placeholder="Nome do Produto" value="#{cadastroDVDBluRayManagedBean.media.name}"/>
+                                        <h:inputText size="20" class="form-control" pt:placeholder="Título do Video" value="#{cadastroDVDBluRayManagedBean.media.title}"/>
                                         <h:panelGrid columns="2">
                                             <h:inputText size="48" class="form-control" pt:placeholder="Nome do Ator\Atriz" value="#{cadastroDVDBluRayManagedBean.newActor.name}"/>
                                             <h:commandButton class="btn-default" value="Adicionar" action="#{cadastroDVDBluRayManagedBean.addActor()}"/>
                                             <!--LISTA DE ATORES-->
-                                            </h:panelGrid>
-                                            <h:panelGrid columns="1">
-                                            <h1><h:outputText value="Atores\\Atrizes"/></h1>
-                                            <h:dataTable rows="2"  value="#{cadastroDVDBluRayManagedBean.actors}" var="item">
-                                                <h:column>
-                                                    <f:facet name="header">
-                                                        <h:outputText value="Nome"/>
-                                                    </f:facet>
-                                                    <h:outputText value="#{item.name}"/>
-                                                </h:column>
-                                            </h:dataTable>
                                         </h:panelGrid>
-                                        <!--
+                                        <h:panelGrid columns="1">
+                                                <!-- Table -->
+                                                <h:dataTable class="table" value="#{cadastroDVDBluRayManagedBean.actors}" var="item">
+                                                    <h:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="Lista de Atores"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.name}"/>
+                                                    </h:column>
+                                                </h:dataTable>
+                                        </h:panelGrid>
                                         <h:panelGrid columns="2">
                                             <h:outputText class="form-control" value="Capa:"/>
                                             <h:inputFile class="form-control" value="#{cadastroDVDBluRayManagedBean.cover}"/>
                                             <h:outputText class="form-control" value="Conteúdo:"/>
                                             <h:inputFile class="form-control" value="#{cadastroDVDBluRayManagedBean.content}"/>
                                         </h:panelGrid>
-                                        -->
+                                            
                                         <h:panelGrid columns="2">
                                             <h:inputText size="15" class="form-control" pt:placeholder="Gênero" value="#{cadastroDVDBluRayManagedBean.media.genre}"/>
-                                        </h:panelGrid>
-                                        <h:panelGrid columns="2">    
-                                            <h:inputText size="25" class="form-control" pt:placeholder="Estúdio" value="#{cadastroDVDBluRayManagedBean.media.studio}"/>
+                                            <h:inputText size="15" class="form-control" pt:placeholder="Legendas" value="#{cadastroDVDBluRayManagedBean.media.subtitles}"/>
                                             <h:inputText size="25" class="form-control" pt:placeholder="Idioma" value="#{cadastroDVDBluRayManagedBean.media.spokenLanguage}"/>
                                             <h:inputText size="25" class="form-control" pt:type="number" pt:placeholder="Preço em Reais (R$)" value="#{cadastroDVDBluRayManagedBean.media.price}"/>
                                             <h:inputText size="25" class="form-control" pt:type="number" pt:placeholder="Duração em Minutos" value="#{cadastroDVDBluRayManagedBean.media.duration}"/>
