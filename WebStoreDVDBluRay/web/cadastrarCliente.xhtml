@@ -22,7 +22,8 @@
                         </div>
                         <h:panelGrid columns="1">
                             <div class="form-group">
-                                <h:inputText size="50" class="form-control" pt:placeholder="Nome Completo"/>
+                                <h:inputText size="50" value="#{cadastroClienteManagedBean.customer.name}" class="form-control" pt:placeholder="Nome Completo"/>
+                                <h:inputText size="11" value="#{cadastroClienteManagedBean.customer.phoneNumber}" class="form-control" pt:placeholder="Numero do Telefone"/>
                             </div> 
                         </h:panelGrid>     
                         <div class="panel panel-default">
@@ -30,19 +31,20 @@
                                 <h3 class="panel-title">Endereço de Cobrança</h3>
                             </div>
                             <div class="panel-body">
-                                <h:panelGrid columns="7">
-                                    <h:inputText size="38" class="form-control" pt:placeholder="Nome da Rua/Avenida"/>
-                                    <h:inputText size="6" class="form-control" pt:placeholder="Número"/>
-                                    <h:outputText value="Estado"/>
-                                    <h:selectOneMenu class="form-control" />
+                                <h:panelGrid columns="8">
+                                    <h:inputText size="38" value="#{cadastroClienteManagedBean.customer.billingAddress.street}" class="form-control" pt:placeholder="Nome da Rua/Avenida"/>
+                                    <h:inputText size="6" value="#{cadastroClienteManagedBean.customer.billingAddress.number}" class="form-control" pt:placeholder="Número"/>
+                                    <h:inputText size="20" value="#{cadastroClienteManagedBean.customer.billingAddress.complement}" class="form-control" pt:placeholder="Complemento"/>
+                                    <h:outputText  value="Estado"/>
+                                    <h:selectOneMenu class="form-control" value="#{cadastroClienteManagedBean.customer.billingAddress.stateAddress}"/>
                                     <h:outputText value="Cidade"/>
-                                    <h:selectOneMenu class="form-control" />
-                                    <h:inputText size="8" class="form-control" pt:placeholder="CEP"/>
+                                    <h:selectOneMenu class="form-control" value="#{cadastroClienteManagedBean.customer.billingAddress.city}"/>
+                                    <h:inputText value="#{cadastroClienteManagedBean.customer.billingAddress.cep}" size="10" class="form-control" pt:placeholder="CEP"/>
                                 </h:panelGrid>     
                             </div>
                         </div>  
                     </div>
-                    <h:commandButton class="btn-default" value="Enviar"/>
+                    <h:commandButton class="btn-default" value="Cadastrar"/>
                 </h:form>
             </ui:define>
             

@@ -10,10 +10,12 @@ import br.com.mackenzie.entities.Actor;
 import br.com.mackenzie.entities.Department;
 import br.com.mackenzie.entities.Media;
 import br.com.mackenzie.service.MediaFacade;
+import br.com.mackenzie.util.MediaType;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,8 +41,8 @@ public class CadastroDVDBluRayManagedBean {
     @EJB
     private MediaFacade mediaFacade;
     private Actor newActor = new Actor();
-    
     private List<Actor> actors = new ArrayList<>();
+    
     
     /**
      * Creates a new instance of CadastroDVDBluRayManagedBean
@@ -52,6 +54,7 @@ public class CadastroDVDBluRayManagedBean {
         InputStream inputSCover = null;
         InputStream inputSContent = null;
         try{
+            
             inputSCover = cover.getInputStream();
             inputSContent = content.getInputStream();
             
@@ -60,17 +63,19 @@ public class CadastroDVDBluRayManagedBean {
             
             media.setCoverImage(bufferCover);
             media.setVideoFile(bufferContent);
-            
+
             Department dp = new Department();
             dp.setId(1);
             media.setDepartment(dp);
             //TODO vir da pagina
-            media.setMediaType(Media.MediaType.DVD);
+            //smedia.setMediaType(Media.MediaType.DVD);
+            
             media.setActors(actors);
             
             mediaFacade.create(media);
             
             media = new Media();
+            
             actors = new ArrayList<>();
             
         }
@@ -129,4 +134,9 @@ public class CadastroDVDBluRayManagedBean {
         }
         return bufferOut;
     }
+    
+     public List<MediaType> getMediaTypes(){
+        return Arrays.asList(MediaType.values());
+    }
+    
 }

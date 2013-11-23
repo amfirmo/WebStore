@@ -40,6 +40,6 @@ public class Comment implements Serializable {
     private byte rating;
     
     @ManyToOne
-    private Client client;
+    private Customer customer;
     
 }

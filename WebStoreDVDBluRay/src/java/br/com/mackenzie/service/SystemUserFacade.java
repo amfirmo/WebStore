@@ -6,7 +6,7 @@
 
 package br.com.mackenzie.service;
 
-import br.com.mackenzie.entities.Client;
+import br.com.mackenzie.entities.Customer;
 import br.com.mackenzie.entities.SystemUser;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,7 +32,7 @@ public class SystemUserFacade extends AbstractFacade<SystemUser> {
     
     public SystemUser validateUser(String userName, String pass){
     
-        return new Client();
+        return new Customer();
     
     }
     

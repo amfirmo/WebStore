@@ -47,7 +47,7 @@ public class SystemUser implements Serializable {
 
     public SystemUser() {
     }
-    
+    /*
     public SystemUser(String name, Profile profile, String userName, String password){
         
         this.name = name;
@@ -56,6 +56,7 @@ public class SystemUser implements Serializable {
         this.passWord = password;
         
     }
+    */
     
     
 }

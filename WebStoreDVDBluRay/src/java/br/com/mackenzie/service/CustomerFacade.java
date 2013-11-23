@@ -6,8 +6,7 @@
 
 package br.com.mackenzie.service;
 
-import br.com.mackenzie.entities.Media;
-import java.io.Serializable;
+import br.com.mackenzie.entities.Customer;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author Andre
  */
 @Stateless
-public class MediaFacade extends AbstractFacade<Media> implements Serializable{
+public class CustomerFacade extends AbstractFacade<Customer> {
     @PersistenceContext(unitName = "WebStoreDVDBluRayPU")
     private EntityManager em;
 
@@ -26,8 +25,8 @@ public class MediaFacade extends AbstractFacade<Media> implements Serializable{
         return em;
     }
 
-    public MediaFacade() {
-        super(Media.class);
+    public CustomerFacade() {
+        super(Customer.class);
     }
     
 }

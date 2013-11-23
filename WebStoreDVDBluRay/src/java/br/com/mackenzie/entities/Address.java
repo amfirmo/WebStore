@@ -31,19 +31,13 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy =GenerationType.TABLE, generator = "TAB_GEN_ADD")
     private long id;
-    
     private String street;
-    
     private String number;
-    
     private String cep;
-    
     private String city;
-    
+    private String stateAddress;
     private String complement;
-    
     protected enum AddressType {BILLING, SHIPPING};
     @Enumerated
     private AddressType addressType;
-    
 }

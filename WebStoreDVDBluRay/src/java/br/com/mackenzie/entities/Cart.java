@@ -25,7 +25,7 @@ public class Cart implements Serializable {
     
     @Id
     @OneToOne
-    private Client client;
+    private Customer customer;
     
     @ManyToMany
     private List<Product> products;

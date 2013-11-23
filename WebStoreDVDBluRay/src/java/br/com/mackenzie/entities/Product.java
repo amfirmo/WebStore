@@ -39,7 +39,7 @@ import lombok.Setter;
                 pkColumnName = "SEQ_NAME", 
                 pkColumnValue = "PRD", 
                 valueColumnName = "SEQ_VAL")
-public class Product implements Serializable{
+public abstract class Product implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "TAB_GEN_PRD")

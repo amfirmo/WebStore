@@ -4,6 +4,7 @@
  */
 package br.com.mackenzie.entities;
 
+import br.com.mackenzie.util.MediaType;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import lombok.Setter;
 public class Media extends Product implements Serializable{
     
     private String title;
-    private int releaseYear;
+    private int releaseYear=1900;
     private String genre;
     private String description;
     private String coverFileName;
@@ -33,8 +34,7 @@ public class Media extends Product implements Serializable{
     private List<Actor> actors = new ArrayList<>();
     private int duration;
     private String spokenLanguage;
-    private List<String> subtitles;
-    public enum MediaType {DVD,BLURAY};
+    private String subtitles;
     @Enumerated
     private MediaType mediaType;
     private String videoFileName;

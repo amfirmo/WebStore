@@ -6,8 +6,6 @@
 
 package br.com.mackenzie.mb;
 
-import br.com.mackenzie.entities.Client;
-import br.com.mackenzie.entities.SystemUser;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import lombok.Getter;

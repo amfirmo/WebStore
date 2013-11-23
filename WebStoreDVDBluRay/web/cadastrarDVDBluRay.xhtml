@@ -28,6 +28,9 @@
                                     <h:panelGrid columns="1">
                                         <h:inputText size="20" class="form-control" pt:placeholder="Nome do Produto" value="#{cadastroDVDBluRayManagedBean.media.name}"/>
                                         <h:inputText size="20" class="form-control" pt:placeholder="Título do Video" value="#{cadastroDVDBluRayManagedBean.media.title}"/>
+                                        <h:selectOneMenu class="form-control" pt:placeholder="Tipo de Mídia" value="#{cadastroDVDBluRayManagedBean.media.mediaType}">
+                                            <f:selectItems value="#{cadastroDVDBluRayManagedBean.mediaTypes}" />
+                                        </h:selectOneMenu>
                                         <h:panelGrid columns="2">
                                             <h:inputText size="48" class="form-control" pt:placeholder="Nome do Ator\Atriz" value="#{cadastroDVDBluRayManagedBean.newActor.name}"/>
                                             <h:commandButton class="btn-default" value="Adicionar" action="#{cadastroDVDBluRayManagedBean.addActor()}"/>
@@ -44,25 +47,37 @@
                                                     </h:column>
                                                 </h:dataTable>
                                         </h:panelGrid>
-                                        <h:panelGrid columns="2">
+                                        <h:panelGrid columns="3">
                                             <h:outputText class="form-control" value="Capa:"/>
+                                            <h:inputText size="28" class="form-control" pt:placeholder="Nome do Arquivo(Opcioanl)" value="#{cadastroDVDBluRayManagedBean.media.coverFileName}"/>
                                             <h:inputFile class="form-control" value="#{cadastroDVDBluRayManagedBean.cover}"/>
                                             <h:outputText class="form-control" value="Conteúdo:"/>
+                                            <h:inputText size="28" class="form-control" pt:placeholder="Nome do Arquivo(Opcional)" value="#{cadastroDVDBluRayManagedBean.media.videoFileName}"/>
                                             <h:inputFile class="form-control" value="#{cadastroDVDBluRayManagedBean.content}"/>
                                         </h:panelGrid>
                                             
-                                        <h:panelGrid columns="2">
+                                        <h:panelGrid columns="4">
+                                            <h:outputText class="form-control" value="Gênero:"/>
                                             <h:inputText size="15" class="form-control" pt:placeholder="Gênero" value="#{cadastroDVDBluRayManagedBean.media.genre}"/>
+                                            <h:outputText class="form-control" value="Legendas:"/>
                                             <h:inputText size="15" class="form-control" pt:placeholder="Legendas" value="#{cadastroDVDBluRayManagedBean.media.subtitles}"/>
+                                            <h:outputText class="form-control" value="Ano de Lançamento:"/>
+                                            <h:inputText size="15" class="form-control" pt:type="number" pt:min="1900" pt:placeholder="Ano de Lançamento" value="#{cadastroDVDBluRayManagedBean.media.releaseYear}"/>
+                                            <h:outputText class="form-control" value="Idioma:"/>
                                             <h:inputText size="25" class="form-control" pt:placeholder="Idioma" value="#{cadastroDVDBluRayManagedBean.media.spokenLanguage}"/>
-                                            <h:inputText size="25" class="form-control" pt:type="number" pt:placeholder="Preço em Reais (R$)" value="#{cadastroDVDBluRayManagedBean.media.price}"/>
+                                            <h:outputText class="form-control" value="Estúdio:"/>
+                                            <h:inputText size="25" class="form-control" pt:placeholder="Estúdio" value="#{cadastroDVDBluRayManagedBean.media.studio}"/>
+                                            <h:outputText class="form-control" value="Preço em Reais (R$):"/>
+                                            <h:inputText size="25" class="form-control"  pt:placeholder="Preço em Reais (R$)" value="#{cadastroDVDBluRayManagedBean.media.price}"/>
+                                            <h:outputText class="form-control" value="Duração em Minutos:"/>
                                             <h:inputText size="25" class="form-control" pt:type="number" pt:placeholder="Duração em Minutos" value="#{cadastroDVDBluRayManagedBean.media.duration}"/>
                                         </h:panelGrid>
-                                        <h:panelGrid columns="1">
+                                        <h:panelGrid columns="2">
                                             <h:inputTextarea  cols="60" rows="4" class="form-control" pt:placeholder="Descrição\Sinopse" value="#{cadastroDVDBluRayManagedBean.media.description}"/>
+                                            <h:commandButton class="btn-default" value="Cadastrar Produto" action="#{cadastroDVDBluRayManagedBean.save()}"/>
                                         </h:panelGrid>
                                     </h:panelGrid>
-                                    <h:commandButton class="btn-default" value="Enviar" action="#{cadastroDVDBluRayManagedBean.save()}"/>
+                                    
                                 </div>
                             </div>
                         </div>
