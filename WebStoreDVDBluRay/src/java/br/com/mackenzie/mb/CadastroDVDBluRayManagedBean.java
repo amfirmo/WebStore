@@ -138,5 +138,9 @@ public class CadastroDVDBluRayManagedBean {
      public List<MediaType> getMediaTypes(){
         return Arrays.asList(MediaType.values());
     }
+     
+    public String goHome(){
+        return "index";
+    }
     
 }

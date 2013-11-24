@@ -3,29 +3,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <body>
         
         <ui:composition template="./paginaBase.xhtml">
             
             <ui:define name="content">
-                <h:form>
+                <h:form id="formId1">
                     <div class='panel panel-primary'>
                         <div class="panel-heading">
                             <h3 class="panel-title">
                                 <ol class="breadcrumb">
-                                    <li><a href="#">Home</a></li>
+                                    <li><h:link outcome="#{cadastroClienteManagedBean.goHome()}" value="Home"/></li>
                                     <li class="active">Cadastro Cliente</li>
                                 </ol>
                             </h3>
                         </div>
-                        <h:panelGrid columns="1">
-                            <div class="form-group">
+                        <div class="form-group">
+                        <h:panelGrid columns="2">
                                 <h:inputText size="50" value="#{cadastroClienteManagedBean.customer.name}" class="form-control" pt:placeholder="Nome Completo"/>
-                                <h:inputText size="11" value="#{cadastroClienteManagedBean.customer.phoneNumber}" class="form-control" pt:placeholder="Numero do Telefone"/>
-                            </div> 
-                        </h:panelGrid>     
+                                <h:inputText size="20" value="#{cadastroClienteManagedBean.customer.phoneNumber}" class="form-control" pt:placeholder="Numero do Telefone"/>
+                        </h:panelGrid>
+                               
+                        <h:panelGrid columns="2">
+                                <h:inputText size="15" value="#{cadastroClienteManagedBean.customer.userName}" class="form-control" pt:placeholder="Nome de Usuario"/>
+                                <h:inputSecret size="11" value="#{cadastroClienteManagedBean.customer.passWord}" pt:placeholder="Senha" class="form-control"/>
+                        </h:panelGrid>
+                        </div> 
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Endereço de Cobrança</h3>
@@ -36,23 +42,25 @@
                                     <h:inputText size="6" value="#{cadastroClienteManagedBean.customer.billingAddress.number}" class="form-control" pt:placeholder="Número"/>
                                     <h:inputText size="20" value="#{cadastroClienteManagedBean.customer.billingAddress.complement}" class="form-control" pt:placeholder="Complemento"/>
                                     <h:outputText  value="Estado"/>
-                                    <h:selectOneMenu class="form-control" value="#{cadastroClienteManagedBean.customer.billingAddress.stateAddress}"/>
+                                    
+                                    <h:selectOneMenu id="states" class="form-control" value="#{cadastroClienteManagedBean.customer.billingAddress.stateAddress.id}">
+                                        <f:selectItem itemValue="" itemLabel="Selecione um Estado"/>
+                                        <f:selectItems value="#{cadastroClienteManagedBean.estados}" var="c" itemValue="#{c.id}" itemLabel="#{c.nome}"/>
+                                        <f:ajax listener="#{cadastroClienteManagedBean.carregarCidades()}" render="formId1:cities" execute="states"></f:ajax>
+                                    </h:selectOneMenu>
+                                        
                                     <h:outputText value="Cidade"/>
-                                    <h:selectOneMenu class="form-control" value="#{cadastroClienteManagedBean.customer.billingAddress.city}"/>
+                                    <h:selectOneMenu id="cities" class="form-control" value="#{cadastroClienteManagedBean.customer.billingAddress.city.id}">
+                                        <f:selectItems value="#{cadastroClienteManagedBean.cidades}" var="c" itemValue="#{c.id}" itemLabel="#{c.nome}"/>
+                                    </h:selectOneMenu>
                                     <h:inputText value="#{cadastroClienteManagedBean.customer.billingAddress.cep}" size="10" class="form-control" pt:placeholder="CEP"/>
                                 </h:panelGrid>     
                             </div>
                         </div>  
                     </div>
-                    <h:commandButton class="btn-default" value="Cadastrar"/>
+                    <h:commandButton action="#{cadastroClienteManagedBean.cadastrarCliente()}" class="btn-default" value="Cadastrar"/>
                 </h:form>
             </ui:define>
-            
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
-            
-        </ui:composition>
-        
+       </ui:composition>
     </body>
 </html>

@@ -10,7 +10,10 @@ import br.com.mackenzie.entities.Customer;
 import br.com.mackenzie.entities.SystemUser;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.jboss.logging.Logger;
 
 /**
  *
@@ -34,6 +37,21 @@ public class SystemUserFacade extends AbstractFacade<SystemUser> {
     
         return new Customer();
     
+    }
+    
+    public SystemUser findByUserPass(String user, String pass){
+        SystemUser systemUser = null;
+        
+        Query q = getEntityManager().createNativeQuery("SELECT * FROM SYSTEMUSER WHERE USERNAME = ? AND PASSWORD = ?", SystemUser.class);
+        q.setParameter(1, user);
+        q.setParameter(2, pass);
+        
+        try{
+            systemUser = (SystemUser) q.getSingleResult();
+        }catch(NoResultException nre){
+            System.err.println("Nao encontrou o user: "+user+"com o pass: "+pass);
+        }
+        return systemUser;
     }
     
 }

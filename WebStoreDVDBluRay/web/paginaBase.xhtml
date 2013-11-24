@@ -3,7 +3,8 @@
 <html lang="eng" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,12 +13,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="description" content=""/>
         <meta name="author" content="Andre Firmo"/>
-        <title>WebStoreDVDBluRay</title>
+        <title>WebStore</title>
         <h:outputStylesheet name="dist/css/bootstrap.css"/>
         <h:outputStylesheet name="css/cssLayout.css"/>
         <h:outputStylesheet name="css/default.css"/>
-        <script src="/WebStoreDVDBluRay/faces/javax.faces.resource/js/jquery-1.10.2.min.js"></script>
-        <script src="/WebStoreDVDBluRay/faces/javax.faces.resource/dist/js/bootstrap.min.js"></script>
+        <script src="/WebApp/faces/javax.faces.resource/js/jquery-1.10.2.min.js"></script>
+        <script src="/WebApp/faces/javax.faces.resource/dist/js/bootstrap.min.js"></script>
     </h:head>
     
     <h:body>
@@ -33,13 +34,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">WebStoreDVDBluRay</a>
+                    <a class="navbar-brand" href="#">WebStore</a>
                 </div>
                 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link1</a></li>
+                        <li class="active"><h:link outcome="#{loginManagedBean.goToCadastroCliente()}" value="Novo Usuário"/></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Departaments<b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -53,22 +54,26 @@
                     </ul>
                     <h:form class="navbar-form navbar-left" pt:role="search">  
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search"/>
+                            <h:inputText size="15" value="#{pesquisarMediaMB.genero}" class="form-control" pt:placeholder="Genero"/> 
+                            <h:inputText size="15" value="#{pesquisarMediaMB.titulo}" class="form-control" pt:placeholder="Titulo"/> 
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <h:commandButton action="#{pesquisarMediaMB.pesquisar()}" class="btn btn-default" value="Search!"/>
                     </h:form>   
-                    <h:form class="navbar-form navbar-left">  
+                    <h:form id="formBaseId1" class="navbar-form navbar-left">  
+                        <!--<f:ajax render="formBaseId1:user formBaseId1:pass formBaseId1:login formBaseId1:bv1 formBaseId1:bv2" execute="@all">-->
                         <div class="form-group">
-                            <h:inputText size="6" class="form-control" pt:placeholder="Usuario"/>
+                            <h:inputText id="user" rendered="#{!loginManagedBean.validated}" size="6" value="#{loginManagedBean.userName}" class="form-control" pt:placeholder="Usuario"/>
                         </div>  
                         <div class="form-group">
-                            <h:inputText size="6" class="form-control" pt:placeholder="Senha"/>
+                            <h:inputSecret id="pass" rendered="#{!loginManagedBean.validated}" size="6" value="#{loginManagedBean.pass}" class="form-control" pt:placeholder="Senha"/>
                         </div>  
                         <div class="form-group">  
-                            <button type="submit" class="btn btn-default">Entrar</button>
+                            <h:commandButton id="login" rendered="#{!loginManagedBean.validated}" action="#{loginManagedBean.validateUser()}" class="btn btn-default" value="Entrar">
+                            </h:commandButton>    
+                            <!--</f:ajax>-->
                         </div>
                         <div class="form-group">
-                            <h:outputText value="Olá, Fulano"/>
+                            <h:commandLink action="#{loginManagedBean.sair()}" id="bv1" rendered="#{loginManagedBean.validated}" value="Olá, #{loginManagedBean.systemUser.name}"/>
                         </div>
                         <div class="form-group right"> 
                             <ul class="nav nav-pills">
@@ -103,39 +108,34 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Library</a></li>
-                            <li class="active">Data</li>
+                            <li class="active"><a href="#">Home</a></li>
                         </ol>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="..." alt="..."/>
-                        </a>
-                        <a class="pull-left" href="#">
-                        <div class="media-body">
-                            <h4 class="media-heading">Media heading</h4>
-                        </div>
-                        </a>    
-                    </div>
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="..." alt="..."/>
-                        </a>
-                        <a class="pull-left" href="#">
+                    <ui:repeat value="#{pesquisarMediaMB.medias}" var="item" >
+                        <h:form>
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <h:graphicImage class="pull-left" height="100" width="100" value="/NewServlet?id=#{item.id}"/>
+                            </a>
+                            <a class="pull-left" href="#">
                             <div class="media-body">
-                                <h4 class="media-heading">Media heading</h4>
+                                <h4 class="media-heading">#{item.name}</h4>
+                                <h5 class="media-heading">#{item.description}</h5>
+                                <h5 class="media-heading">R$<h:outputText value="#{item.price}"><f:convertNumber pattern="#,###,##0.00"/></h:outputText></h5>
                             </div>
-                        </a>    
-                    </div>
+                            </a>  
+                            <div class="media-body">
+                                <h:commandLink action="#{loginManagedBean.validateUser}" class="btn btn-default" value="Comprar"/>
+                            </div>
+                        </div>
+                        </h:form>
+                    </ui:repeat>
                 </div>    
             </div>    
            </div>       
         </ui:insert>
-      
-        
         <div id="bottom">
             <ui:insert name="bottom">Designed By: André Firmo Software</ui:insert>
         </div>

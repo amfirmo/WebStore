@@ -15,7 +15,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <ol class="breadcrumb">
-                                        <li><a href="#">Home</a></li>
+                                        <li>><h:link outcome="#{cadastroDVDBluRayManagedBean.goHome()}" value="Home"/></li>
                                         <li class="active">Cadastro de DVD\Blu-Ray</li>
                                     </ol>
                                 </h3>
@@ -68,7 +68,7 @@
                                             <h:outputText class="form-control" value="Estúdio:"/>
                                             <h:inputText size="25" class="form-control" pt:placeholder="Estúdio" value="#{cadastroDVDBluRayManagedBean.media.studio}"/>
                                             <h:outputText class="form-control" value="Preço em Reais (R$):"/>
-                                            <h:inputText size="25" class="form-control"  pt:placeholder="Preço em Reais (R$)" value="#{cadastroDVDBluRayManagedBean.media.price}"/>
+                                            <h:inputText size="25" class="form-control"  pt:placeholder="Preço em Reais (R$)" value="#{cadastroDVDBluRayManagedBean.media.price}"><f:convertNumber pattern="#,###,##0.00"/></h:inputText>
                                             <h:outputText class="form-control" value="Duração em Minutos:"/>
                                             <h:inputText size="25" class="form-control" pt:type="number" pt:placeholder="Duração em Minutos" value="#{cadastroDVDBluRayManagedBean.media.duration}"/>
                                         </h:panelGrid>
