@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <h:panelGrid columns="1">
-                                        <h:inputText size="20" class="form-control" pt:placeholder="Nome do Produto" value="#{cadastroDVDBluRayManagedBean.media.name}"/>
+                                        <h:inputText id="Nome" required="true" size="20" class="form-control" pt:placeholder="Nome do Produto" value="#{cadastroDVDBluRayManagedBean.media.name}"/>
                                         <h:inputText size="20" class="form-control" pt:placeholder="Título do Video" value="#{cadastroDVDBluRayManagedBean.media.title}"/>
                                         <h:selectOneMenu class="form-control" pt:placeholder="Tipo de Mídia" value="#{cadastroDVDBluRayManagedBean.media.mediaType}">
                                             <f:selectItems value="#{cadastroDVDBluRayManagedBean.mediaTypes}" />
@@ -49,7 +49,7 @@
                                         </h:panelGrid>
                                         <h:panelGrid columns="3">
                                             <h:outputText class="form-control" value="Capa:"/>
-                                            <h:inputText size="28" class="form-control" pt:placeholder="Nome do Arquivo(Opcioanl)" value="#{cadastroDVDBluRayManagedBean.media.coverFileName}"/>
+                                            <h:inputText size="28" class="form-control" pt:placeholder="Nome do Arquivo(Opcional)" value="#{cadastroDVDBluRayManagedBean.media.coverFileName}"/>
                                             <h:inputFile class="form-control" value="#{cadastroDVDBluRayManagedBean.cover}"/>
                                             <h:outputText class="form-control" value="Conteúdo:"/>
                                             <h:inputText size="28" class="form-control" pt:placeholder="Nome do Arquivo(Opcional)" value="#{cadastroDVDBluRayManagedBean.media.videoFileName}"/>

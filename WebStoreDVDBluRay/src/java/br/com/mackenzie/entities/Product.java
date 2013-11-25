@@ -50,4 +50,14 @@ public abstract class Product implements Serializable{
     private List<Comment> comments;
     @ManyToOne
     private Department department;
+    @Override
+    public boolean equals(Object obj){
+        
+        if(obj instanceof Product && ((Product)obj).getId()==this.getId()){
+            return true;
+        }else{
+            return false;
+        }
+    
+    }
 }

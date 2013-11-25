@@ -78,7 +78,8 @@
                         <div class="form-group right"> 
                             <ul class="nav nav-pills">
                                 <li class="active">
-                                    <a href="#">Cart<span class="badge pull-right">42</span></a>
+                                   <!-- <a href="#">Cart<span class="badge pull-right">42</span></a>-->
+                                   <h:link outcome="cart" value="Carrinho"><span id="qty" class="badge pull-right">#{cartMB.quantidade}</span></h:link>
                                 </li>
                             </ul>
                         </div>    
@@ -114,7 +115,7 @@
                 </div>
                 <div class="panel-body">
                     <ui:repeat value="#{pesquisarMediaMB.medias}" var="item" >
-                        <h:form>
+                        <h:form id="baseForm2">
                         <div class="media">
                             <a class="pull-left" href="#">
                                 <h:graphicImage class="pull-left" height="100" width="100" value="/NewServlet?id=#{item.id}"/>
@@ -127,7 +128,8 @@
                             </div>
                             </a>  
                             <div class="media-body">
-                                <h:commandLink action="#{loginManagedBean.validateUser}" class="btn btn-default" value="Comprar"/>
+                                    <h:commandLink id="comprar" action="#{cartMB.addProduct(item)}" class="btn btn-default" value="Comprar">
+                                    </h:commandLink>
                             </div>
                         </div>
                         </h:form>

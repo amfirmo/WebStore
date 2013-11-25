@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <body>
+        
+        <ui:composition template="./paginaBase.xhtml">
+            
+            <ui:define name="content">
+                <div id="content" style="height: 600px">
+                    <div class='panel panel-primary'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <ol class="breadcrumb">
+                                    <li><h:link outcome="#{cartMB.goHome()}" value="Home"/></li>
+                                    <li class="active">Carrinho de Compras</li>
+                                </ol>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <ui:repeat value="#{cartMB.produtos}" var="item" >
+                                <h:form>
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <h:graphicImage class="pull-left" height="100" width="100" value="/NewServlet?id=#{item.id}"/>
+                                        </a>
+                                        <a class="pull-left" href="#">
+                                            <div class="media-body">
+                                                <h4 class="media-heading">#{item.name}</h4>
+                                                <h5 class="media-heading">R$<h:outputText value="#{item.price}"><f:convertNumber pattern="#,###,##0.00"/></h:outputText></h5>
+                                            </div>
+                                        </a>  
+                                        <div class="media-body">
+                                        <h:commandLink id="comprar" action="#{cartMB.removeProduct(item)}" class="btn btn-default" value="Remover do Carrinho">
+                                        </h:commandLink>
+                            </div>
+                                    </div>
+                                </h:form>
+                            </ui:repeat>
+                            <H2 class="media-heading">Valor total da sua compra: R$ <h:outputText value="#{cartMB.valorTotal}"><f:convertNumber pattern="#,###,##0.00"/></h:outputText></H2>
+                        </div>    
+                    </div>    
+                </div>   
+            </ui:define>
+            
+        </ui:composition>
+        
+    </body>
+</html>
